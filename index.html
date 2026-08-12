@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Tonmoy Mini App</title>
+
+  <script src="https://telegram.org/js/telegram-web-app.js?63"></script>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f5f7fb;
+      color: #222;
+    }
+
+    .app {
+      padding: 20px;
+    }
+
+    .card {
+      background: white;
+      padding: 20px;
+      border-radius: 18px;
+      margin-bottom: 15px;
+      box-shadow: 0 4px 15px rgba(0,0,0,.08);
+    }
+
+    button {
+      width: 100%;
+      padding: 14px;
+      border: 0;
+      border-radius: 12px;
+      background: #2481cc;
+      color: white;
+      font-size: 16px;
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="app">
+
+  <div class="card">
+    <h2>👋 Welcome!</h2>
+    <p id="username">Loading...</p>
+  </div>
+
+  <div class="card">
+    <h3>💰 Dashboard</h3>
+    <p>Balance: <b>৳0.00</b></p>
+  </div>
+
+  <button onclick="showMessage()">
+    🚀 Get Started
+  </button>
+
+</div>
+
+<script>
+  const tg = window.Telegram.WebApp;
+
+  tg.ready();
+  tg.expand();
+
+  const user = tg.initDataUnsafe?.user;
+
+  if (user) {
+    document.getElementById("username").innerText =
+      "Hello, " + (user.first_name || "User") + "!";
+  }
+
+  function showMessage() {
+    tg.showAlert("Mini App is working! ✅");
+  }
+</script>
+
+</body>
+</html>
